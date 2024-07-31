@@ -1,6 +1,7 @@
 const express = require("express");
 const apiRoutes = require("./routes/api");
 const { fetchAndStoreData } = require("./utils/dataFetcher");
+const { swaggerUi, specs } = require("./swagger");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,6 +14,9 @@ const limiter = rateLimit({
 });
 
 app.use(limiter);
+
+// Swagger setup
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use("/api", apiRoutes);
 
