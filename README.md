@@ -22,7 +22,7 @@ This project fetches dummy JSON data and provides an API to access and filter th
 ### Authentication
 
 - **Middleware**: [`auth`](src/middleware/auth.js)
-  - Used to authenticate requests.
+  - Used basic auth to authenticate requests.
   - Example usage in routes: [`authenticate`](src/routes/api.js)
   - Username - admin
   - Password - password
