@@ -2,6 +2,21 @@
 
 This project fetches dummy JSON data and provides an API to access and filter the data.
 
+## Table of Contents
+
+- [Node.js Dummy JSON Project](#nodejs-dummy-json-project)
+  - [Table of Contents](#table-of-contents)
+  - [Setup](#setup)
+  - [Features](#features)
+    - [API Endpoints](#api-endpoints)
+    - [Authentication](#authentication)
+    - [Caching](#caching)
+    - [Rate Limiting](#rate-limiting)
+    - [Data Fetching](#data-fetching)
+    - [Swagger Documentation](#swagger-documentation)
+    - [Testing](#testing)
+  - [API Usage](#api-usage)
+
 ## Setup
 
 1. Clone the repository
@@ -16,7 +31,9 @@ This project fetches dummy JSON data and provides an API to access and filter th
 - **GET /api/products**
   - Fetch all products.
   - **Filter by category**: `?category=beauty`
+  - **Filter by brand**: `?brand=essence`
   - **Sort by field**: `?sort=price:asc` or `?sort=rating:asc` or `?sort=discount:desc`
+  - **Pagination**: `?page=1&limit=10`
   - Example: `http://localhost:3000/api/products?category=beauty&sort=price:desc`
 
 ### Authentication
@@ -32,6 +49,12 @@ This project fetches dummy JSON data and provides an API to access and filter th
 - **Cache Utility**: [`NodeCache`](src/utils/cache.js)
   - Used to cache data for improved performance.
   - Example usage in controller: [`cache`](src/controllers/dataController.js)
+
+### Rate Limiting
+
+- **Rate Limiter**: [`express-rate-limit`](https://www.npmjs.com/package/express-rate-limit)
+  - Limits the number of requests per IP to prevent abuse.
+  - Configured in: [`server.js`](src/server.js)
 
 ### Data Fetching
 
@@ -54,9 +77,6 @@ This project fetches dummy JSON data and provides an API to access and filter th
 
 - You can either run the server and visit [Swagger UI](http://localhost:3000/api-docs) to interact with the API requests.
   <img src="./assets/Screenshot%202024-08-01%20at%201.08.32 AM.jpg" alt="API Documentation Screenshot" width="700">
-
-
-
 
 - You can also view the complete API documentation on [Postman Docs](https://documenter.getpostman.com/view/13304285/2sA3kd9cgP).  
   <img src="./assets/Screenshot%202024-08-01%20at%201.15.06 AM.jpg" alt="API Documentation Screenshot" width="700">
